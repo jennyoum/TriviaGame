@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>Trivia Game</title>
+</head>
+<body>
+
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Trivia Game</h1>
+        </div>
+    </div>  
+
+    <p id="question"></p>
+    <p id="choice"></p>
+    <div id="show-time"></div>
+
+    <script>
+        var questions = [
+            { q: "Which Spice Girl married David Beckham?",
+              c: ["Baby, Scary, Sporty, Posh, Ginger"],
+              a: "Posh"  
+              },
+            { q: "Which Backstreet Boy is the youngest?",
+              c: ["Kevin, AJ, Nick, Brian, Howie"],
+              a: "Nick"
+              },
+            { q: "Who wrote the album called Butterfly?",
+              c: ["Cher, Celine Dion, Mariah Carey, Madonna"],
+              a: "Mariah Carey"
+              },
+            { q: "Who won a Grammy for album of the year for Lemonade?",
+              c: ["Selena Gomez, Beyonce, Taylor Swift, Britney Spears"],
+              a: "Beyonce"
+              }];
+
+        var questionIndex = 0;
+        var time = 30;
+        var score = 0;
+        var intervalId;
+
+        function runTime() {
+            clearInterval(intervalId);
+            intervalId = setInterval(decrement, 1000);
+        }
+
+        function decrement() {
+            number--;
+            $("#show-time").html("<h2>" + time + "</h2>");
+
+            if (time === 0) {
+                alert("Time's Up!");
+            }
+        }
+
+        function askQuestions(){
+            var question = questions[questionIndex];
+            question.innerHTML = "<p>" + questions + "</p>";
+        }
+
+        function displayChoices(choice){
+            var choice = choice[questionIndex].c;
+            
+        }
+
+        
+
+        function updateScore() {
+            document.querySelector("#score").innerHTML = "Score: " + score;
+        }
+
+
+
+        
+        
+        
+        </script>
+</body>
+</html>
