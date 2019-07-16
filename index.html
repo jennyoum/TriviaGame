@@ -20,6 +20,10 @@
     <p id="question"></p>
     <p id="choice"></p>
     <div id="show-time"></div>
+    <div>
+        <span>Score:</span>
+        <span id="score"></span>
+    </div>
 
     <script>
         var questions = [
@@ -41,43 +45,56 @@
               }];
 
         var questionIndex = 0;
-        var time = 30;
+        var time = 7;
         var score = 0;
         var intervalId;
+
+        function updateScore() {
+            //check answer to user answer. highlight the right answer green, if the answer from user was wrong highlight that answer red
+            //if answer is right update the score var
+            document.querySelector("#score").innerHTML = score;
+            askQuestions();
+
+              //check if questionIndex is = 4 if it is end game
+        };
 
         function runTime() {
             clearInterval(intervalId);
             intervalId = setInterval(decrement, 1000);
-        }
+        };
 
         function decrement() {
-            number--;
+            time--;
             $("#show-time").html("<h2>" + time + "</h2>");
 
             if (time === 0) {
                 alert("Time's Up!");
-            }
-        }
+                time = 7;
+                updateScore();
+            };
+        };
+
+        function displayChoices(){
+            var choice = questions[questionIndex].c; //loop throuch choice array
+            $("#choice").html(choice); //inside for loop create radio buttons
+            questionIndex++;
+            runTime();
+        };
 
         function askQuestions(){
-            var question = questions[questionIndex];
-            question.innerHTML = "<p>" + questions + "</p>";
-        }
-
-        function displayChoices(choice){
-            var choice = choice[questionIndex].c;
+            var question = questions[questionIndex].q;
+            $("#question").text(question);
             
-        }
-
+            displayChoices();
+        };
         
 
-        function updateScore() {
-            document.querySelector("#score").innerHTML = "Score: " + score;
-        }
+        //onclick on choice class and use this to see which one is being clicked
+        //find attr that holds the choices value
 
 
 
-        
+        askQuestions();
         
         
         </script>
