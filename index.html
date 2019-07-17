@@ -28,19 +28,19 @@
     <script>
         var questions = [
             { q: "Which Spice Girl married David Beckham?",
-              c: ["Baby, Scary, Sporty, Posh, Ginger"],
+              c: ["Baby", "Scary", "Sporty", "Posh", "Ginger"],
               a: "Posh"  
               },
             { q: "Which Backstreet Boy is the youngest?",
-              c: ["Kevin, AJ, Nick, Brian, Howie"],
+              c: ["Kevin", "AJ", "Nick", "Brian", "Howie"],
               a: "Nick"
               },
             { q: "Who wrote the album called Butterfly?",
-              c: ["Cher, Celine Dion, Mariah Carey, Madonna"],
+              c: ["Cher", "Celine Dion", "Mariah Carey", "Madonna", "Beyonce"],
               a: "Mariah Carey"
               },
             { q: "Who won a Grammy for album of the year for Lemonade?",
-              c: ["Selena Gomez, Beyonce, Taylor Swift, Britney Spears"],
+              c: ["Selena Gomez", "Beyonce", "Taylor Swift", "Britney Spears", "SZA"],
               a: "Beyonce"
               }];
 
@@ -75,8 +75,14 @@
         };
 
         function displayChoices(){
-            var choice = questions[questionIndex].c; //loop throuch choice array
-            $("#choice").html(choice); //inside for loop create radio buttons
+            var choice = questions[questionIndex].c; 
+            //loop throuch choice array
+           // $("#choice").html(choice);
+            // inside for loop create radio buttons
+            for (var i=0; i < choice.length; i++) {
+
+                $('#choice').html('<input type="radio" name="choice" value="'+i+'">' + choice[i] + '<br>');
+            }
             questionIndex++;
             runTime();
         };
@@ -91,7 +97,7 @@
 
         //onclick on choice class and use this to see which one is being clicked
         //find attr that holds the choices value
-
+        // $("#choice").on("click")
 
 
         askQuestions();
